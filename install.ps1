@@ -4,25 +4,27 @@ param(
     [String]
     $ModDirectory = '/opt/factorio/mods',
     [datetime]
-    $LastRun = (Get-Content $PSScriptRoot\lastrun)
+    $LastRun = [DateTime]::MinValue,
+    [string]
+    $GameVersion = '0.16'
 )
+
 $mods = @()
-foreach ($mod in $ModList)
-{
-    $mod = (Invoke-RestMethod "https://mods.factorio.com/api/mods/$mod")
-    if ([datetime]$mod.updated_at -gt $LastRun)
-    {
-        $finalLocation = Join-Path -Path $ModDirectory -ChildPath $mod.releases[0].file_name
-        $oldMod = Get-ChildItem -Path $ModDirectory -Filter ("*{0}*" -f $mod.name)
-        $dl = "https://mods.factorio.com" + $mod.releases[0].download_url
+foreach ($mod in $ModList) {
+    $oMod = (Invoke-RestMethod "https://mods.factorio.com/api/mods/$mod")
+    $curRelease = $oMod.releases[-1]
+    if ([datetime]$curRelease.released_at -gt $LastRun -and $curRelease.info_json.factorio_version -eq $GameVersion) {
+        $finalLocation = Join-Path -Path $ModDirectory -ChildPath $curRelease.file_name
+        $oldMod = Get-ChildItem -Path $ModDirectory -Filter ("*{0}*" -f $oMod.name)
+        $dl = "https://mods.factorio.com" + $curRelease.download_url
         Invoke-WebRequest -Uri $dl -OutFile $finalLocation
         $oldMod | Remove-Item 
     }
     $mods += New-Object psobject -Property @{
-        prettyname = $mod.title
-        name       = $mod.name
-        version    = $mod.releases[0].version
-        updatedOn  = $mod.updated_at
+        prettyname = $oMod.title
+        name       = $oMod.name
+        version    = $curRelease.version
+        updatedOn  = $curRelease.released_at
     }
 }
 Out-File -InputObject (Get-Date) -FilePath ("$PSScriptRoot\lastrun")
