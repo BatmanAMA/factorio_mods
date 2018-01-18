@@ -1,13 +1,13 @@
 # factorio_mods
 
-## Install all lists in [mods.txt]
+## Install all mods in mods.txt
 
---windows--
+### windows
 
 ```powershell
 .\install.ps1 -ModDirectory %appdata%\factorio\mods
 ```
---linux--
+### linux
 
 ```powershell
 .\install.ps1 -ModDirectory ~/.factorio/mods
