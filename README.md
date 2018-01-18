@@ -1,5 +1,18 @@
 # factorio_mods
 
+## Install all lists in [mods.txt]
+
+--windows--
+
+```powershell
+.\install.ps1 -ModDirectory %appdata%\factorio\mods
+```
+--linux--
+
+```powershell
+.\install.ps1 -ModDirectory ~/.factorio/mods
+```
+
 ## Shiny's current modlist
 * Angel's Infinite Ores
 * Angel's Petro Chemical Processing
