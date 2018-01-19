@@ -1,18 +1,22 @@
 # factorio_mods
 
+<<<<<<< HEAD
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 NOTE:
 Factorio API was changed yesterday and broke this script....
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 ## Install all lists in [mods.txt]
+=======
+## Install all mods in mods.txt
+>>>>>>> 2f511a5004240eb53674fb9bbf50556fcefdf108
 
---windows--
+### windows
 
 ```powershell
 .\install.ps1 -ModDirectory %appdata%\factorio\mods
 ```
---linux--
+### linux
 
 ```powershell
 .\install.ps1 -ModDirectory ~/.factorio/mods
