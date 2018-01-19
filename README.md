@@ -1,5 +1,10 @@
 # factorio_mods
 
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+NOTE:
+Factorio API was changed yesterday and broke this script....
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 ## Install all lists in [mods.txt]
 
 --windows--
